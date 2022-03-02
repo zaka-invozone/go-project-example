@@ -45,7 +45,6 @@ jobs:
             dep ensure
         fi
         
-    - name: Build
-      run: go build -v .
+
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
