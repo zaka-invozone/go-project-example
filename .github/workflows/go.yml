@@ -24,7 +24,10 @@ jobs:
     #     ports:
     #     - 6379/tcp
     #     options: --entrypoint redis-server
-
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: go
     - name: Set up Go 1.13
       uses: actions/setup-go@v1
       with:
@@ -42,11 +45,7 @@ jobs:
             dep ensure
         fi
         
-    - name: Test
-      run: go test -v ./...
-
     - name: Build
       run: go build -v .
-
-    - name: Testconfig
-      run: make testconfig
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
